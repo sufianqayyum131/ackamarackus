@@ -1,11 +1,11 @@
 <?php
 class Employee_model extends CI_Model {
 
-	function createEmployee($employeeID, $firstName, $middleName, $lastName, $userName, $email, $mobileNum, $homePhone, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume, $cnicScannedImage) {
+	function createEmployee($employeeID, $firstName, $middleName, $lastName, $userName, $email, $mobileNum, $homePhone, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume) {
 
 		$status = $this -> db -> insert('employee_basic_details', array('employeeID' => $employeeID, 'firstName' => $firstName, 
 		'middleName' => $middleName, 'lastName' => $lastName, 'userName' => $userName, 
-		'email' => $email, 'mobileNum' => $mobileNum, 'cnicNumber' => $cnicNumber, 'homePhone'=>$homePhone,'dob' => $dob, 'address' => $address, 'emergencyContactName' => $emergencyContactName, 'emergencyContactNumber' => $emergencyContactNumber, 'bloodGroup' => $bloodGroup, 'father_husbandName' => $father_husbandName, 'hireDate' => $hireDate, 'profilePic' => $profilePic, 'resume' => $resume, 'cnicScannedImage' => $cnicScannedImage));
+		'email' => $email, 'mobileNum' => $mobileNum, 'cnicNumber' => $cnicNumber, 'homePhone'=>$homePhone,'dob' => $dob, 'address' => $address, 'emergencyContactName' => $emergencyContactName, 'emergencyContactNumber' => $emergencyContactNumber, 'bloodGroup' => $bloodGroup, 'father_husbandName' => $father_husbandName, 'hireDate' => $hireDate, 'profilePic' => $profilePic, 'resume' => $resume));
 		if ($status) {
 		
 			return $status;

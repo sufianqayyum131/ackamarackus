@@ -11,7 +11,11 @@ class Employee extends CI_Controller {
 	}
 
 	public function index() {
-		//$this -> load -> view('upload_form', array('error' => ' '));
+		$data['header'] = 'template/header';
+		$data['sidebar'] = 'template/sidebar';
+		$data['main_content'] = 'addEmployee';
+		$data['footer'] = 'template/footer';
+		$this -> load -> view('template/template', $data);
 	}
 
 	function functionToTestgetAndSaveEmployeeDetailsResult() {
@@ -99,8 +103,11 @@ class Employee extends CI_Controller {
 	}
 
 	function getAndSaveEmployeeDetails() {
-
+	
 		$employeeID = $this -> getMaxIDFromEmployeeDetails();
+		
+		$profilePic = 'profilePic';
+		$profilePic = $this -> do_upload($profilePic, $employeeID);
 
 		$firstName = $this -> input -> post('firstName');
 
@@ -111,37 +118,32 @@ class Employee extends CI_Controller {
 		$userName = $this -> input -> post('userName');
 
 		$email = $this -> input -> post('email');
+		
+		$cnicNumber = $this -> input -> post('cnic');
 
-		$mobileNum = $this -> input -> post('mobileNum');
+		$mobileNum = $this -> input -> post('mobileNumber');
 
 		$homePhone = $this -> input -> post('homePhone');
-
-		$cnicNumber = $this -> input -> post('cnicNumber');
-
-		$profilePic = 'profilePic';
-		$profilePic = $this -> do_upload($profilePic, $employeeID);
-
-		$resume = 'resume';
-		$resume = $this -> do_upload($resume, $employeeID);
-
-		$cnic = 'cnicScannedImage';
-		$cnicScannedImage = $this -> do_upload($cnic, $employeeID);
 
 		$dob = $this -> input -> post('dob');
 
 		$address = $this -> input -> post('address');
+		
+		$emergencyContactName = $this -> input -> post('emergencyCName');
 
-		$emergencyContactName = $this -> input -> post('emergencyContactName');
-
-		$emergencyContactNumber = $this -> input -> post('emergencyContactNumber');
-
+		$emergencyContactNumber = $this -> input -> post('emergencyCNumber');
+		
 		$bloodGroup = $this -> input -> post('bloodGroup');
 
-		$father_husbandName = $this -> input -> post('father_husbandName');
+		$father_husbandName = $this -> input -> post('spouseName');
 
 		$hireDate = $this -> input -> post('hireDate');
+		
 
-		$saveEmployeeBasicDetails = $this -> employee_model -> createEmployee($employeeID, $firstName, $middleName, $lastName, $userName, $email, $mobileNum, $homePhone, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume, $cnicScannedImage);
+		$resume = 'resume';
+		$resume = $this -> do_upload($resume, $employeeID);
+
+		$saveEmployeeBasicDetails = $this -> employee_model -> createEmployee($employeeID, $firstName, $middleName, $lastName, $userName, $email, $mobileNum, $homePhone, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume);
 
 		if ($saveEmployeeBasicDetails == 1) {
 
@@ -151,7 +153,7 @@ class Employee extends CI_Controller {
 
 			$designation = $this -> input -> post('designation');
 
-			$supervisorID = $this -> input -> post('supervisorID');
+			$supervisorID = $this -> input -> post('superviserID');
 
 			/*function call to save employe departmental details in departmen table*/
 
@@ -168,17 +170,16 @@ class Employee extends CI_Controller {
 
 				if ($saveEmployeeSalaryDetails == 1) {
 
-				//I need this type of array	//$education = array(0 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009'), 1 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011'));
+				/*//I need this type of array	//$education = array(0 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009'), 1 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011'));
 
 					$education = $this -> input -> post('education');
 					//null;
 
 					if (is_array($education) === true && count($education) > 0) {
-						/*function call to save employe education details in education table*/
-
+						
 						$saveEmployeeEducationHistory = $this -> employee_model -> createEducation($education);
 
-						/**/
+						
 					} else {
 						// echo "no employee training data";
 					}
@@ -188,9 +189,9 @@ class Employee extends CI_Controller {
 					
 		
 					if (is_array($jobHistory) === true && count($jobHistory) > 0) {
-						/*function call to save employe job history details in jobHistory table*/
+						
 						$saveEmployeejobHistory = $this -> employee_model -> createJobHistory($jobHistory);
-						/**/
+						
 					} else {
 						//echo "no employee job data";
 					}
@@ -200,13 +201,13 @@ class Employee extends CI_Controller {
 					$training = $this -> input -> post('training');
 					//null;
 					if (is_array($training) === true && count($training) > 0) {
-						/*function call to save employe training details in training table*/
+						
 						$saveEmployeeTrainingHistory = $this -> employee_model -> createTraining($training);
 
-						/**/
+						
 					} else {
 
-					}
+					}*/
 
 				} else {
 					$tableName = 'employee_basic_details';
@@ -215,23 +216,18 @@ class Employee extends CI_Controller {
 					$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
 					$errorResponse = array("status" => "false", "msg" => $saveEmployeeSalaryDetails);
 					$errorResponse = json_encode($errorResponse);
-					$data = array('some_data' => $errorResponse);
-
-					$this -> load -> view('upload_success', $data);
-					//$this -> load -> view('upload_form', $errorResponse);
-					//return $errorResponse;
-
+					echo $errorResponse;
+					//$data = array('some_data' => $errorResponse);
+					//$this -> load -> view('upload_success', $data);
 				}
 			} else {
 				$tableName = 'employee_basic_details';
 				$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
 				$errorResponse = array("status" => "false", "msg" => $saveEmployeeDepartmentalDetails);
 				$errorResponse = json_encode($errorResponse);
-				$data = array('some_data' => $errorResponse);
-
-				$this -> load -> view('upload_success', $data);
-				//return $errorResponse;
-
+				echo $errorResponse;
+				//$data = array('some_data' => $errorResponse);
+				//$this -> load -> view('upload_success', $data);
 			}
 			/*updating of last id of employee added*/
 			$versionBit = 0;
@@ -239,27 +235,24 @@ class Employee extends CI_Controller {
 			if ($updateIDOfLastEmployeeAdded == 1) {
 				$successResponse = array("status" => "true", "msg" => "Teacher Successfully Added !!!");
 				$successResponse = json_encode($successResponse);
-				$data = array('some_data' => $successResponse);
-
-				$this -> load -> view('upload_success', $data);
+				echo $successResponse;
+				//$data = array('some_data' => $successResponse);
+				//$this -> load -> view('upload_success', $data);
 			} else {
 
 				$errorResponse = array("status" => "false", "msg" => $updateIDOfLastEmployeeAdded);
 				$errorResponse = json_encode($errorResponse);
-				$data = array('some_data' => $errorResponse);
-
-				$this -> load -> view('upload_success', $data);
-				//return $errorResponse;
-
+				echo $errorResponse;
+				//$data = array('some_data' => $errorResponse);
+				//$this -> load -> view('upload_success', $data);
 			}
 		} else {
 
 			$errorResponse = array("status" => "false", "msg" => $saveEmployeeBasicDetails);
 			$errorResponse = json_encode($errorResponse);
-			$data = array('some_data' => $errorResponse);
-			$this -> load -> view('upload_success', $data);
-			//return $errorResponse;
-
+			echo $errorResponse;
+			//$data = array('some_data' => $errorResponse);
+			//$this -> load -> view('upload_success', $data);
 		}
 
 	}
