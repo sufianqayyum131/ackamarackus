@@ -191,7 +191,7 @@ class Employee_model extends CI_Model {
 
 	function deleteUnsuccessfullData($employeeID, $tableName) {
 		$this -> db -> where('employeeID', $employeeID);
-		$result = $this -> db -> delete('users');
+		$result = $this -> db -> delete($tableName);
 		if ($result) {
 			return $result;
 		}
