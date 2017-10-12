@@ -66,8 +66,7 @@ class Employee_model extends CI_Model {
 
 		foreach ($jobHistory as $a) {
 			$data = array('employeeID' => $a['employeeID'], 'company' => $a['company'], 'designation' => $a['designation'], 
-			'employmentStartDate' => $a['employmentStartDate'], 'employmentEndDate' => $a['employmentEndDate'], 
-			'JobDescription' => $a['JobDescription']);
+			'employmentStartDate' => $a['employmentStartDate'], 'employmentEndDate' => $a['employmentEndDate']);
 
 			$save = $this -> db -> insert('employee_job_history', $data);
 			

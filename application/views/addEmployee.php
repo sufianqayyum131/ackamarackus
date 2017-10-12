@@ -236,9 +236,10 @@
 												 		</td>
 												 		<td>
 												 			<select class="form-control" name="educationQualification[]" id="educationQualification"> 
-																<option value="5">--- Qualification ---</option> 
-				                            					<option value="5">Option 1</option> 
-				                            					<option value="6">Option 2</option>
+																<option value="">Please Select</option> 
+				                            					<option value="SSC">Option 1</option> 
+				                            					<option value="HSSC">Option 2</option>
+				                            					<option value="BSC">Option 3</option>
 				                            				</select>
 												 		</td>
 												 		<td>
@@ -257,9 +258,10 @@
 												 		</td>
 												 		<td>
 												 			<select class="form-control" name="educationQualification[]" id="educationQualification"> 
-																<option value="5">--- Qualification ---</option> 
-				                            					<option value="5">Option 1</option> 
-				                            					<option value="6">Option 2</option>
+																<option value="">Please Select</option> 
+				                            					<option value="SSC">Option 1</option> 
+				                            					<option value="HSSC">Option 2</option>
+				                            					<option value="BSC">Option 3</option>
 				                            				</select>
 												 		</td>
 												 		<td>

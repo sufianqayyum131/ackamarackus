@@ -183,46 +183,94 @@ class Employee extends CI_Controller {
 				/**/
 
 				if ($saveEmployeeSalaryDetails == 1) {
-					
-					//$educationInstitute = $this -> input -> post('educationInstitute');
-					
-					//$educationQualification = $this -> input -> post('educationQualification');
-					
-					/*//I need this type of array	//$education = array(0 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009'), 1 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011'));
 
-					 $education = $this -> input -> post('education');
-					 //null;
+					//I need this type of array	//$education = array(0 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009'), 1 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011'));
 
-					 if (is_array($education) === true && count($education) > 0) {
+					$educationInstitute = $this -> input -> post('educationInstitute');
+					$educationQualification = $this -> input -> post('educationQualification');
+					$educationAdmDate = $this -> input -> post('educationAdmDate');
+					$educationGraDate = $this -> input -> post('educationGraDate');
 
-					 $saveEmployeeEducationHistory = $this -> employee_model -> createEducation($education);
+					$sizeOfEducationArray = sizeof($educationInstitute);
 
-					 } else {
-					 // echo "no employee training data";
-					 }
-					 //I need this type of array //$jobHistory = array(0 => array('employeeID' => $employeeID, 'company' => 'Techaccess', 'designation' => 'SupportEngineer', 'employmentStartDate' => '01-02-2015', 'employmentEndDate' => '01-03-2016', 'JobDescription' => 'xyz'), 1 => array('employeeID' => $employeeID, 'company' => 'GlobizServ', 'designation' => 'SoftwareEngineer', 'employmentStartDate' => '01-02-2014', 'employmentEndDate' => '01-03-2015', 'JobDescription' => 'xyz'));
+					$education = array();
+					$i = 0;
+					foreach ($educationQualification as $id => $key) {
+						if (--$sizeOfEducationArray <= 0) {
+							break;
+						}
+						$education[$i] = array('employeeID' => $employeeID, 'instituteName' => $educationInstitute[$id], 'qualification' => $educationQualification[$id], 'admissionDate' => $educationAdmDate[$id], 'graduationDate' => $educationGraDate[$id]);
+						$i++;
 
-					 $jobHistory = $this -> input -> post('jobHistory');
+					}
+					//print_r($education);
+					//null;
 
-					 if (is_array($jobHistory) === true && count($jobHistory) > 0) {
+					if (is_array($education) === true && count($education) > 0) {
 
-					 $saveEmployeejobHistory = $this -> employee_model -> createJobHistory($jobHistory);
+						$saveEmployeeEducationHistory = $this -> employee_model -> createEducation($education);
 
-					 } else {
-					 //echo "no employee job data";
-					 }
+					} else {
+						// echo "no employee training data";
+					}
+					//I need this type of array //$jobHistory = array(0 => array('employeeID' => $employeeID, 'company' => 'Techaccess', 'designation' => 'SupportEngineer', 'employmentStartDate' => '01-02-2015', 'employmentEndDate' => '01-03-2016', 'JobDescription' => 'xyz'), 1 => array('employeeID' => $employeeID, 'company' => 'GlobizServ', 'designation' => 'SoftwareEngineer', 'employmentStartDate' => '01-02-2014', 'employmentEndDate' => '01-03-2015', 'JobDescription' => 'xyz'));
 
-					 //I need this type of array //$training = array(0 => array('employeeID' => $employeeID, 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '10-03-2016', 'trainingEndDate' => '10-06-2016', 'ExamDate' => '11-11-2016', 'certificationName' => 'OCP'), 1 => array('employeeID' => $employeeID, 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '11-04-2016', 'trainingEndDate' => '01-01-2017', 'ExamDate' => '11-02-2017', 'certificationName' => 'RHCE'), );
+					$jobHistoryCompany = $this -> input -> post('jobHistoryCompany');
+					$jobHistoryDesignation = $this -> input -> post('jobHistoryDesignation');
+					$jobHistoryStartDate = $this -> input -> post('jobHistoryStartDate');
+					$jobHistoryEndDate = $this -> input -> post('jobHistoryEndDate');
+					$sizeOfJobArray = sizeof($jobHistoryCompany);
 
-					 $training = $this -> input -> post('training');
-					 //null;
-					 if (is_array($training) === true && count($training) > 0) {
+					$jobHistory = array();
+					$i = 0;
+					foreach ($jobHistoryCompany as $id => $key) {
+						if (--$sizeOfJobArray <= 0) {
+							break;
+						}
+						$jobHistory[$i] = array('employeeID' => $employeeID, 'company' => $jobHistoryCompany[$id], 'designation' => $jobHistoryDesignation[$id], 'employmentStartDate' => $jobHistoryStartDate[$id], 'employmentEndDate' => $jobHistoryEndDate[$id]);
+						$i++;
 
-					 $saveEmployeeTrainingHistory = $this -> employee_model -> createTraining($training);
+					}
+					//print_r($job);
 
-					 } else {
+					if (is_array($jobHistory) === true && count($jobHistory) > 0) {
 
-					 }*/
+						$saveEmployeejobHistory = $this -> employee_model -> createJobHistory($jobHistory);
+
+					} else {
+						//echo "no employee job data";
+					}
+
+					//I need this type of array //$training = array(0 => array('employeeID' => $employeeID, 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '10-03-2016', 'trainingEndDate' => '10-06-2016', 'ExamDate' => '11-11-2016', 'certificationName' => 'OCP'), 1 => array('employeeID' => $employeeID, 'trainingInstituteName' => 'Technoed', 'trainingStartDate' => '11-04-2016', 'trainingEndDate' => '01-01-2017', 'ExamDate' => '11-02-2017', 'certificationName' => 'RHCE'), );
+
+					//$training = $this -> input -> post('training');
+					//null;
+					$trainingsInstitueName = $this -> input -> post('trainingsInstitueName');
+					$trainingsCertficationName = $this -> input -> post('trainingsCertficationName');
+					$trainingsStartDate = $this -> input -> post('trainingsStartDate');
+					$trainingsEndDate = $this -> input -> post('trainingsEndDate');
+					$trainingsExamDate = $this -> input -> post('trainingsExamDate');
+
+					$sizeOfTrainingArray = sizeof($trainingsInstitueName);
+
+					$training = array();
+					$i = 0;
+					foreach ($trainingsInstitueName as $id => $key) {
+						if (--$sizeOfTrainingArray <= 0) {
+							break;
+						}
+						$training[$i] = array('employeeID' => $employeeID, 'trainingInstituteName' => $trainingsInstitueName[$id], 'trainingStartDate' => $trainingsStartDate[$id], 'trainingEndDate' => $trainingsEndDate[$id], 'ExamDate' => $trainingsExamDate[$id], 'certificationName' => $trainingsCertficationName[$id]);
+						$i++;
+
+					}
+					//print_r($training);
+					if (is_array($training) === true && count($training) > 0) {
+
+						$saveEmployeeTrainingHistory = $this -> employee_model -> createTraining($training);
+
+					} else {
+
+					}
 
 				} else {
 					$tableName = 'employee_basic_details';
