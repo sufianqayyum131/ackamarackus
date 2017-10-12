@@ -223,7 +223,7 @@ class Employee extends CI_Controller {
 				} else {
 					$tableName = 'employee_basic_details';
 					$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
-					$this->delete_files('./uploads/' . $employeeID);
+					$this -> delete_files('./uploads/' . $employeeID);
 					$tableName = 'employee_department_details';
 					$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
 					$errorResponse = array("status" => "false", "msg" => $saveEmployeeSalaryDetails);
@@ -235,7 +235,7 @@ class Employee extends CI_Controller {
 			} else {
 				$tableName = 'employee_basic_details';
 				$this -> employee_model -> deleteUnsuccessfullData($employeeID, $tableName);
-				$this->delete_files('./uploads/' . $employeeID);
+				$this -> delete_files('./uploads/' . $employeeID);
 				$errorResponse = array("status" => "false", "msg" => $saveEmployeeDepartmentalDetails);
 				$errorResponse = json_encode($errorResponse);
 				echo $errorResponse;
@@ -252,7 +252,7 @@ class Employee extends CI_Controller {
 				//$data = array('some_data' => $successResponse);
 				//$this -> load -> view('upload_success', $data);
 			} else {
-				$this->delete_files('./uploads/' . $employeeID);
+				$this -> delete_files('./uploads/' . $employeeID);
 				$errorResponse = array("status" => "false", "msg" => $updateIDOfLastEmployeeAdded);
 				$errorResponse = json_encode($errorResponse);
 				echo $errorResponse;
@@ -260,7 +260,7 @@ class Employee extends CI_Controller {
 				//$this -> load -> view('upload_success', $data);
 			}
 		} else {
-			$this->delete_files('./uploads/' . $employeeID);
+			$this -> delete_files('./uploads/' . $employeeID);
 			$errorResponse = array("status" => "false", "msg" => $saveEmployeeBasicDetails);
 			$errorResponse = json_encode($errorResponse);
 			echo $errorResponse;
