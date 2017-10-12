@@ -245,7 +245,7 @@
 												 			<input type="text" class="form-control datepicker" name="educationAdmDate[]" id="educationAdmDate" placeholder="Admission Date" />
 												 		</td>
 												 		<td>
-												 			<input type="text" class="form-control datepicker" name="educationGraDate" id="educationGraDate" placeholder="Graduation Date" />
+												 			<input type="text" class="form-control datepicker" name="educationGraDate[]" id="educationGraDate" placeholder="Graduation Date" />
 												 		</td>
 												 	</tr>
 												 	<tr style="display:none;">
@@ -278,7 +278,7 @@
 										<i class="fa fa-minus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.del('addTeacherEducationTable')"></i>	
 									</div>
 								</fieldset>
-								<fieldset style="min-height:100px;">
+								<!--<fieldset style="min-height:100px;">
 									<legend>Job History </legend>
 									<div class="row">
 										<i class="fa fa-plus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.add('jobHistory')"></i>
@@ -374,7 +374,7 @@
 									<div class="row">
 										<i class="fa fa-minus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.del('trainingsTable')"></i>	
 									</div>
-								</fieldset>
+								</fieldset>-->
 								<div class="row">
 									<button type="button" id="submit" class="btn btn-lg btn-success pull-right submit" style="margin-right: 15px;margin-top: 10px;" onclick="getValues()">SUBMIT</button>
 								</div>

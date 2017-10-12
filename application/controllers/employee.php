@@ -183,7 +183,11 @@ class Employee extends CI_Controller {
 				/**/
 
 				if ($saveEmployeeSalaryDetails == 1) {
-
+					
+					//$educationInstitute = $this -> input -> post('educationInstitute');
+					
+					//$educationQualification = $this -> input -> post('educationQualification');
+					
 					/*//I need this type of array	//$education = array(0 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'SSC', 'admissionDate' => '01-03-2007', 'graduationDate' => '01-06-2009'), 1 => array('employeeID' => $employeeID, 'instituteName' => 'FGCC Lahore', 'qualification' => 'HSSC', 'admissionDate' => '01-07-2009', 'graduationDate' => '01-06-2011'));
 
 					 $education = $this -> input -> post('education');
