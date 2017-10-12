@@ -245,7 +245,7 @@
 												 			<input type="text" class="form-control datepicker" name="educationAdmDate[]" id="educationAdmDate" placeholder="Admission Date" />
 												 		</td>
 												 		<td>
-												 			<input type="text" class="form-control datepicker" name="educationGraDate" id="educationGraDate" placeholder="Graduation Date" />
+												 			<input type="text" class="form-control datepicker" name="educationGraDate[]" id="educationGraDate" placeholder="Graduation Date" />
 												 		</td>
 												 	</tr>
 												 	<tr style="display:none;">
