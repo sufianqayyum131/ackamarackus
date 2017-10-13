@@ -40,3 +40,12 @@ fieldset legend {
     box-shadow: 0 0 0 5px #d2d3d4;
     margin-left: 20px;
 }
+
+.tableActionButtonPadding {
+	padding:3px 3px;
+}
+
+.tableAddRowButton {
+	margin-left:15px;
+	margin-bottom:5px;
+}

@@ -162,7 +162,7 @@
 	                            				<input type="text" class="form-control" name="salary" id="salary" />
 								            </div>
 				        				</div>
-				        				<div class="col-md-4">
+				        				<div class="col-md-8">
 				        					<div class="form-group">
 	                            				<label class="control-label">Resume : </label><br>
 	                            				<input type="file" class="form-control imageFileinput" name="resume" id="resume" data-show-preview="false"/>
@@ -177,8 +177,10 @@
 				        					<div class="form-group">
 	                            				<label class="control-label">Employee Type : </label><br>
 	                            				<select class="form-control" name="employeeType" id="employeeType"> 
-	                            					<option value="1">Option 1</option> 
-	                            					<option value="2">Option 2</option>
+	                            					<option value="permanent">Permanent</option> 
+	                            					<option value="contract">Contract</option>
+	                            					<option value="internee">Internee</option>
+	                            					<option value="daily wages">Daily Wages</option>
 	                            				</select>
 								            </div>
 				        				</div>
@@ -186,8 +188,12 @@
 				        					<div class="form-group">
 	                            				<label class="control-label">Department : </label><br>
 	                            				<select class="form-control" name="department" id="department"> 
-	                            					<option value="3">Option 1</option> 
-	                            					<option value="4">Option 2</option>
+	                            					<option value="academics">Academics</option> 
+	                            					<option value="faculty">Faculty</option>
+	                            					<option value="finance">Finance</option>
+	                            					<option value="transport">Transport</option>
+	                            					<option value="transport">Security</option>
+	                            					<option value="transport">Hostel</option>
 	                            				</select>
 								            </div>
 				        				</div>
@@ -195,8 +201,14 @@
 				        					<div class="form-group">
 	                            				<label class="control-label">Designation : </label><br>
 	                            				<select class="form-control" name="designation" id="designation"> 
-	                            					<option value="5">Option 1</option> 
-	                            					<option value="6">Option 2</option>
+	                            					<option value="principal">Principal</option> 
+	                            					<option value="vice principal">Vice Principal</option>
+	                            					<option value="teacher">Teacher</option>
+	                            					<option value="driver">Driver</option>
+	                            					<option value="guard">Guard</option>
+	                            					<option value="warden">Warden</option>
+	                            					<option value="cook">Cook</option>
+	                            					<option value="cleaner">Cleaner</option>
 	                            				</select>
 								            </div>
 				        				</div>
@@ -204,8 +216,7 @@
 				        					<div class="form-group">
 	                            				<label class="control-label">Superviser ID : </label><br>
 	                            				<select class="form-control" name="superviserID" id="superviserID"> 
-	                            					<option value="7">Option 1</option> 
-	                            					<option value="8">Option 2</option>
+	                            					<option value="1002">Muhammad Aslam</option> 
 	                            				</select>
 								            </div>
 				        				</div>
@@ -214,32 +225,36 @@
 								<fieldset style="min-height:100px;">
 									<legend>Education Details </legend>
 									<div class="row">
-										<i class="fa fa-plus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.add('addTeacherEducationTable')"></i>
+										<button type="button" class="btn btn-success tableActionButtonPadding tableAddRowButton" onclick="AddTableRow.add('educationTable')">
+											<i class="fa fa-plus fa-fw"></i>
+										</button>
 									</div>
 									<div class="row">	
 										<div class="col-md-12">	
-											<table class="table table-responsive table-bordered order-list" id="addTeacherEducationTable">
+											<table class="table table-responsive table-bordered order-list" id="educationTable">
 												<thead>
 													<tr>
-														<th>check</th>
 														<th>Institute Name</th>
 													    <th>Qualification</th>
 													    <th>Admission Date</th>
 													    <th>Graduation Date</th>
+													    <th>Action</th>
 													 </tr>
 												 </thead>
 												 <tbody>
 												 	<tr>
-												 		<td><input type="checkbox" class="icheckButtons" name="delRow"></td>
 												 		<td>
 												 			<input type="text" class="form-control" name="educationInstitute[]" id="educationInstitute" placeholder="Institue Name" />
 												 		</td>
 												 		<td>
 												 			<select class="form-control" name="educationQualification[]" id="educationQualification"> 
 																<option value="">Please Select</option> 
-				                            					<option value="SSC">Option 1</option> 
-				                            					<option value="HSSC">Option 2</option>
-				                            					<option value="BSC">Option 3</option>
+				                            					<option value="SSC/O-Level">SSC/O-Level</option> 
+				                            					<option value="HSSC/A-Level">HSSC/A-Level</option>
+				                            					<option value="bachelours">Bachelours</option>
+				                            					<option value="masters">Masters</option>
+				                            					<option value="mphil">M.Phil</option>
+				                            					<option value="phd">P.H.D</option>
 				                            				</select>
 												 		</td>
 												 		<td>
@@ -248,20 +263,21 @@
 												 		<td>
 												 			<input type="text" class="form-control datepicker" name="educationGraDate[]" id="educationGraDate" placeholder="Graduation Date" />
 												 		</td>
+												 		<td><button type="button" class="btn btn-danger tableActionButtonPadding delRow" onclick="AddTableRow.del('educationTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												 	</tr>
 												 	<tr style="display:none;">
 												 		<td>
-												 			<input type='checkbox' name='delRow'>
-												 		</td>
-												 		<td>
 												 			<input type="text" class="form-control" name="educationInstitute[]" id="educationInstitute" placeholder="Institue Name" />
 												 		</td>
 												 		<td>
 												 			<select class="form-control" name="educationQualification[]" id="educationQualification"> 
 																<option value="">Please Select</option> 
-				                            					<option value="SSC">Option 1</option> 
-				                            					<option value="HSSC">Option 2</option>
-				                            					<option value="BSC">Option 3</option>
+				                            					<option value="SSC/O-Level">SSC/O-Level</option> 
+				                            					<option value="HSSC/A-Level">HSSC/A-Level</option>
+				                            					<option value="bachelours">Bachelours</option>
+				                            					<option value="masters">Masters</option>
+				                            					<option value="mphil">M.Phil</option>
+				                            					<option value="phd">P.H.D</option>
 				                            				</select>
 												 		</td>
 												 		<td>
@@ -270,36 +286,35 @@
 												 		<td>
 												 			<input type="text" class="form-control datepicker" name="educationGraDate[]" id="educationGraDate" placeholder="Graduation Date" />
 												 		</td>
+												 		<td><button type="button" class="btn btn-danger tableActionButtonPadding delRow" onclick="AddTableRow.del('educationTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												 	</tr>
 												 	
 												 </tbody>
 											</table>
 										</div>
 									</div>
-									<div class="row">
-										<i class="fa fa-minus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.del('addTeacherEducationTable')"></i>	
-									</div>
 								</fieldset>
 								<fieldset style="min-height:100px;">
 									<legend>Job History </legend>
 									<div class="row">
-										<i class="fa fa-plus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.add('jobHistory')"></i>
+										<button type="button" class="btn btn-success tableActionButtonPadding tableAddRowButton" onclick="AddTableRow.add('jobHistoryTable')">
+											<i class="fa fa-plus fa-fw"></i>
+										</button>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<table class="table table-responsive table-bordered order-list" id="jobHistory">
+											<table class="table table-responsive table-bordered order-list" id="jobHistoryTable">
 												<thead>
 													<tr>
-														<th>Check</th>
 														<th>Company</th>
 													    <th>Designation</th>
 													    <th>Start Date</th>
 													    <th>End Date</th>
+													    <th>Actions</th>
 													 </tr>
 												 </thead>
 												 <tbody>
 												 	<tr>
-												 		<td><input type="checkbox" class="icheckButtons" name="delRow"></td>
 												 		<td>
 												 			<input type="text" class="form-control" name="jobHistoryCompany[]" id="jobHistoryCompany" placeholder="Company" />
 												 		</td>
@@ -312,9 +327,9 @@
 												 		<td>
 												 			<input type="text" class="form-control datepicker" name="jobHistoryEndDate[]" id="jobHistoryEndDate" placeholder="End Date" />
 												 		</td>
+												 		<td><button type="button" class="btn btn-danger tableActionButtonPadding" onclick="AddTableRow.del('jobHistoryTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												 	</tr>
 												 	<tr style="display:none;">
-												 		<td><input type="checkbox" name="delRow"></td>
 												 		<td>
 												 			<input type="text" class="form-control" name="jobHistoryCompany[]" id="jobHistoryCompany" placeholder="Company" />
 												 		</td>
@@ -327,54 +342,53 @@
 												 		<td>
 												 			<input type="text" class="form-control datepicker" name="jobHistoryEndDate[]" id="jobHistoryEndDate" placeholder="End Date" />
 												 		</td>
+												 		<td><button type="button" class="btn btn-danger tableActionButtonPadding delRow" onclick="AddTableRow.del('jobHistoryTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												 	</tr>
 												 </tbody>
 											</table>
 										</div>
-									</div>
-									<div class="row">
-										<i class="fa fa-minus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.del('jobHistory')"></i>	
 									</div>
 								</fieldset>
 								<fieldset style="min-height:100px;">
 									<legend>Trainings</legend>
 									<div class="row">
+										<button type="button" class="btn btn-success tableActionButtonPadding tableAddRowButton" onclick="AddTableRow.add('trainingsTable')">
+											<i class="fa fa-plus fa-fw"></i>
+										</button>
+									</div>
+									<div class="row">
 										<div class="col-md-12">
-											<i class="fa fa-plus-circle fa-2x fa-fw" onclick="AddTableRow.add('trainingsTable')"></i>
 											<table class="table table-responsive table-bordered" id="trainingsTable">
 											    <thead>
 											    	<tr>
-											    		<th>Check</th>
-												        <th>Institute Name</th>
+											    		<th>Institute Name</th>
 												        <th>Certification Name</th>
 												        <th>Start Date</th>
 												        <th>End Date</th>
 												        <th>Exam Date</th>
+												        <th>Actions</th>
 												     </tr>
 											    </thead>
 											    <tbody>
 											      	<tr>
-											      		<td><input type="checkbox" class="icheckButtons" name="delRow"></td>
-												        <td><input type="text" class="form-control" name="trainingsInstitueName[]" id="trainingsInstitueName" placeholder="Institue" /></td>
+											      		<td><input type="text" class="form-control" name="trainingsInstitueName[]" id="trainingsInstitueName" placeholder="Institue" /></td>
 												        <td><input type="text" class="form-control" name="trainingsCertficationName[]" id="trainingsCertficationName" placeholder="Certification" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsStartDate[]" id="trainingsStartDate" placeholder="Start Date" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsEndDate[]" id="trainingsEndDate" placeholder="End Date" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsExamDate[]" id="trainingsExamDate" placeholder="Exam Date" /></td>
+												        <td><button type="button" class="btn btn-danger tableActionButtonPadding" onclick="AddTableRow.del('trainingsTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												     </tr>
 												     <tr style="display:none;">
-											      		<td><input type="checkbox" name="delRow"></td>
-												        <td><input type="text" class="form-control" name="trainingsInstitueName[]" id="trainingsInstitueName" placeholder="Institue" /></td>
+											      		<td><input type="text" class="form-control" name="trainingsInstitueName[]" id="trainingsInstitueName" placeholder="Institue" /></td>
 												        <td><input type="text" class="form-control" name="trainingsCertficationName[]" id="trainingsCertficationName" placeholder="Certification" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsStartDate[]" id="trainingsStartDate" placeholder="Start Date" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsEndDate[]" id="trainingsEndDate" placeholder="End Date" /></td>
 												        <td><input type="text" class="form-control datepicker" name="trainingsExamDate[]" id="trainingsExamDate" placeholder="Exam Date" /></td>
+												        <td><button type="button" class="btn btn-danger tableActionButtonPadding delRow" onclick="AddTableRow.del('trainingsTable',this)"><i class="fa fa-trash fa-fw"></i></button></td>
 												     </tr>
 												 </tbody>
 											</table>
 										</div>
-									</div>
-									<div class="row">
-										<i class="fa fa-minus-circle fa-2x fa-fw" style="padding-left: 15px;" onclick="AddTableRow.del('trainingsTable')"></i>	
 									</div>
 								</fieldset>
 								<div class="row">

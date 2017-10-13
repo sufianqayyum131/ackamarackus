@@ -1,16 +1,15 @@
 // ADD TABLE CLASS
 var AddTableRow = {
 	add:function(tableID) {
+		
 		var $row = $("#" + tableID).find('tr:last');
   		$row.clone().insertBefore($row).show();
+  		$('.datepicker').datepicker();
 	},
-	del:function(tableID,row) {
-	  	$("#" + tableID + " tbody").find('input[name="delRow"]').each(function(){
-	    	if($(this).is(":checked")){
-	        	$(this).parents("tr").remove();
-	        }
-	    });
-	}
+	del:function(tableID,r) {
+		var i = r.parentNode.parentNode.rowIndex;
+    	document.getElementById(tableID).deleteRow(i);
+   }
 };
 
 // Image Upload UI PLugin INIT
@@ -63,9 +62,13 @@ function textToIconButton() {
 		
 }
 
-$(document).ready(function() {
+function initIcheck() {
 	$('.icheckButtons').iCheck({
 		checkboxClass: 'icheckbox_square-blue',
 		radioClass: 'iradio_square-blue'
 	});
+}
+
+$(document).ready(function() {
+	initIcheck();
 });
