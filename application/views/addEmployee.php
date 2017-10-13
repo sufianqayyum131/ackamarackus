@@ -144,7 +144,7 @@
 				        				</div>
 				        				<div class="col-md-4">
 				        					<div class="form-group">
-	                            				<label class="control-label">Spouse Name : </label><br>
+	                            				<label class="control-label">Father/Mother Name : </label><br>
 	                            				<input type="text" class="form-control" name="spouseName" id="spouseName" />
 								            </div>
 				        				</div>
@@ -350,7 +350,7 @@
 									</div>
 								</fieldset>
 								<fieldset style="min-height:100px;">
-									<legend>Trainings</legend>
+									<legend>Trainings/Certfications</legend>
 									<div class="row">
 										<button type="button" class="btn btn-success tableActionButtonPadding tableAddRowButton" onclick="AddTableRow.add('trainingsTable')">
 											<i class="fa fa-plus fa-fw"></i>
