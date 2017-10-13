@@ -284,9 +284,9 @@ class Employee_model extends CI_Model {
 		$this -> db -> join('employee_department_details', 'employee_basic_details.employeeID = employee_department_details.employeeID', 'left');
 		//$this->db->where('employee_basic_details.employeeID', 1014);
 		$query = $this -> db -> get();
-		if($query){
-		return $query->result();
-		}else {
+		if ($query) {
+			return $query -> result();
+		} else {
 
 			$error = $this -> db -> error();
 
@@ -299,7 +299,9 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		
+
 	}
+
+	
 
 }

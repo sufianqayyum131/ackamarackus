@@ -33,15 +33,16 @@
 			        	<table id="viewAllEmployeeTable" class="display responsive nowrap" cellspacing="0" width="100%">
 						    <thead>
 						        <tr>
+						            <th>employeeID</th>
+						            <th>name</th>
+						            <th>userName</th>
+						            <th>email</th>
+						            <th>mobileNum</th>
 						            <th>department</th>
 						            <th>designation</th>
-						            <th>email</th>
-						            <th>employeeID</th>
 						            <th>employeeType</th>
-						            <th>mobileNum</th>
-						            <th>name</th>
 						            <th>supervisorID</th>
-						            <th>userName</th>
+						            
 						         </tr>
 						    </thead>
 							
