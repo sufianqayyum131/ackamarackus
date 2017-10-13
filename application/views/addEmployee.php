@@ -12,7 +12,7 @@
 					<a href="javascript:;"> <i class="fa fa-user fa-fw"></i> Employee </a>
 				</li>
 				<li>
-					<a href="<?php base_url(); ?>employee">Add Employee</a>
+					<a href="<?php echo base_url(); ?>employee/addEmployee">Add Employee</a>
 				</li>
 			</ol>
 		</div>

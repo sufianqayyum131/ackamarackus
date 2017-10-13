@@ -26,7 +26,7 @@ function initImageFileUploadUI() {
 	    removeTitle: 'Cancel or reset changes',
 	    elErrorContainer: '#kv-avatar-errors-1',
 	    msgErrorClass: 'alert alert-block alert-danger',
-	    defaultPreviewContent: '<img src="assets/images/default_avatar_male.jpg" alt="Your Avatar">',
+	    defaultPreviewContent: '<img src="/ackamarackus/assets/images/default_avatar_male.jpg" alt="Your Avatar">',
 	    layoutTemplates: {main2: '{preview} {browse}'},
 	    allowedFileExtensions: ["jpg", "png", "gif"],
 	    
