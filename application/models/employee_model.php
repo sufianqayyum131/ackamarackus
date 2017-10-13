@@ -3,14 +3,12 @@ class Employee_model extends CI_Model {
 
 	function createEmployee($employeeID, $firstName, $middleName, $lastName, $userName, $email, $mobileNum, $homePhone, $cnicNumber, $dob, $address, $emergencyContactNumber, $emergencyContactName, $bloodGroup, $father_husbandName, $hireDate, $profilePic, $resume) {
 
-		$status = $this -> db -> insert('employee_basic_details', array('employeeID' => $employeeID, 'firstName' => $firstName, 
-		'middleName' => $middleName, 'lastName' => $lastName, 'userName' => $userName, 
-		'email' => $email, 'mobileNum' => $mobileNum, 'cnicNumber' => $cnicNumber, 'homePhone'=>$homePhone,'dob' => $dob, 'address' => $address, 'emergencyContactName' => $emergencyContactName, 'emergencyContactNumber' => $emergencyContactNumber, 'bloodGroup' => $bloodGroup, 'father_husbandName' => $father_husbandName, 'hireDate' => $hireDate, 'profilePic' => $profilePic, 'resume' => $resume));
+		$status = $this -> db -> insert('employee_basic_details', array('employeeID' => $employeeID, 'firstName' => $firstName, 'middleName' => $middleName, 'lastName' => $lastName, 'userName' => $userName, 'email' => $email, 'mobileNum' => $mobileNum, 'cnicNumber' => $cnicNumber, 'homePhone' => $homePhone, 'dob' => $dob, 'address' => $address, 'emergencyContactName' => $emergencyContactName, 'emergencyContactNumber' => $emergencyContactNumber, 'bloodGroup' => $bloodGroup, 'father_husbandName' => $father_husbandName, 'hireDate' => $hireDate, 'profilePic' => $profilePic, 'resume' => $resume));
 		if ($status) {
-		
+
 			return $status;
 		} else {
-			
+
 			$error = $this -> db -> error();
 
 			// If an error occurred, $error will now have 'code' and 'message' keys...
@@ -65,31 +63,30 @@ class Employee_model extends CI_Model {
 	function createJobHistory($jobHistory) {
 
 		foreach ($jobHistory as $a) {
-			$data = array('employeeID' => $a['employeeID'], 'company' => $a['company'], 'designation' => $a['designation'], 
-			'employmentStartDate' => $a['employmentStartDate'], 'employmentEndDate' => $a['employmentEndDate']);
+			$data = array('employeeID' => $a['employeeID'], 'company' => $a['company'], 'designation' => $a['designation'], 'employmentStartDate' => $a['employmentStartDate'], 'employmentEndDate' => $a['employmentEndDate']);
 
 			$save = $this -> db -> insert('employee_job_history', $data);
-			
-			 }if ($save) {
-				return $save;
-			} else {
-				$error = $this -> db -> error();
 
-				// If an error occurred, $error will now have 'code' and 'message' keys...
-				if (isset($error['message'])) {
-					return $error['message'];
-				}
+		}
+		if ($save) {
+			return $save;
+		} else {
+			$error = $this -> db -> error();
 
-				// No error returned by the DB driver...
-				return null;
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
 			}
+
+			// No error returned by the DB driver...
+			return null;
+		}
 	}
 
 	function createEducation($education) {
 
 		foreach ($education as $a) {
-			$data = array('employeeID' => $a['employeeID'], 'instituteName' => $a['instituteName'], 'qualification' => $a['qualification'], 
-			'admissionDate' => $a['admissionDate'], 'graduationDate' => $a['graduationDate']);
+			$data = array('employeeID' => $a['employeeID'], 'instituteName' => $a['instituteName'], 'qualification' => $a['qualification'], 'admissionDate' => $a['admissionDate'], 'graduationDate' => $a['graduationDate']);
 
 			$save = $this -> db -> insert('employee_education_history', $data);
 			/*echo "<pre>";
@@ -116,9 +113,7 @@ class Employee_model extends CI_Model {
 	function createTraining($training) {
 
 		foreach ($training as $a) {
-			$data = array('employeeID' => $a['employeeID'], 'trainingInstituteName' => $a['trainingInstituteName'], 
-			'trainingStartDate' => $a['trainingStartDate'], 'trainingEndDate' => $a['trainingEndDate'], 'ExamDate' => $a['ExamDate'], 
-			 'certificationName' => $a['certificationName']);
+			$data = array('employeeID' => $a['employeeID'], 'trainingInstituteName' => $a['trainingInstituteName'], 'trainingStartDate' => $a['trainingStartDate'], 'trainingEndDate' => $a['trainingEndDate'], 'ExamDate' => $a['ExamDate'], 'certificationName' => $a['certificationName']);
 
 			$save = $this -> db -> insert('employee_trainings_history', $data);
 			/*echo "<pre>";
@@ -126,19 +121,20 @@ class Employee_model extends CI_Model {
 			 echo "<pre>";
 			 echo "ends here";*/
 
-		}if ($save) {
-				return $save;
-			} else {
-				$error = $this -> db -> error();
+		}
+		if ($save) {
+			return $save;
+		} else {
+			$error = $this -> db -> error();
 
-				// If an error occurred, $error will now have 'code' and 'message' keys...
-				if (isset($error['message'])) {
-					return $error['message'];
-				}
-
-				// No error returned by the DB driver...
-				return null;
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
 			}
+
+			// No error returned by the DB driver...
+			return null;
+		}
 	}
 
 	function updateIdOfLastEmployeeAddedAfterSucessfullEmployeeAddition($employeeID, $versionBit) {
@@ -280,6 +276,17 @@ class Employee_model extends CI_Model {
 			return "there must be data missing in child tables";
 		}
 
+	}
+
+	function getAllEmployees() {
+		$this -> db -> select('employee_basic_details.*,employee_department_details.*');
+		$this -> db -> from('employee_basic_details');
+		$this -> db -> join('employee_department_details', 'employee_basic_details.employeeID = employee_department_details.employeeID', 'left');
+		//$this->db->where('employee_basic_details.employeeID', 1014);
+		$query = $this -> db -> get();
+		
+		return $query->result();
+		
 	}
 
 }
