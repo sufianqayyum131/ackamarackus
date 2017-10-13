@@ -324,7 +324,7 @@ class Employee extends CI_Controller {
 
 	function getAllEmployeesFromDatabase() {
 
-		$list= $this -> employee_model -> getAllEmployees();
+		$list = $this -> employee_model -> getAllEmployees();
 		if (is_array($list) === true && count($list) > 0) {
 			$data = array();
 			foreach ($list as $customers) {
@@ -340,14 +340,23 @@ class Employee extends CI_Controller {
 				$row['supervisorID'] = $customers -> supervisorID;
 				$data[] = $row;
 			}
+			implode(',', array_map(function($key) {
+				if (!is_numeric($key)) {
+					return '"' . $key . '"';
+					//adds double quotes, but if you prefer single quotes, use:
+					//return "'" . $value . "'";
+				} else {
+					return $key;
+				}
+			}, $data[0]));
 
 			$successResponse = array("status" => "true", "msg" => "Teacher's Data Received", "data" => $data, );
 			echo json_encode($successResponse);
 
 		} else {
-			$errorResponse = array("status" => "false", "msg" => "Teachers Data Not Found");
+			$errorResponse = array("status" => "false", "msg" => $list);
 			echo json_encode($errorResponse);
-			
+
 		}
 	}
 
