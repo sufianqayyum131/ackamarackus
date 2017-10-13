@@ -18,6 +18,14 @@ class Employee extends CI_Controller {
 		$this -> load -> view('template/template', $data);
 	}
 	
+	public function viewEmployee() {
+		$data['header'] = 'template/header';
+		$data['sidebar'] = 'template/sidebar';
+		$data['main_content'] = 'viewEmployee';
+		$data['footer'] = 'template/footer';
+		$this -> load -> view('template/template', $data);
+	}
+	
 	function functionToTestgetAndSaveEmployeeDetailsResult() {
 
 		$result = $this -> getMaxIDFromEmployeeDetails();

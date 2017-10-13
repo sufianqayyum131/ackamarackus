@@ -12,6 +12,8 @@
     <script src="<?php echo base_url(); ?>assets/js/neon-demo.js"></script>
     <!-- <script src="<?php echo base_url(); ?>assets/js/neon-skins.js"></script> -->
     
+    <!-- Datatables -->
+    <script src="<?php echo base_url(); ?>assets/libraries/DataTables/datatables.js"></script>
     <!-- File-Input -->
     <script src="<?php echo base_url(); ?>assets/libraries/file-input/js/fileinput.min.js"></script>
 	<!-- Input-Mask -->
@@ -22,6 +24,7 @@
     <script src="<?php echo base_url(); ?>assets/libraries/icheck/icheck.min.js"></script>
     <!-- Sweet Alert -->
     <script src="<?php echo base_url(); ?>assets/libraries/sweetalert2/sweetalert2.all.min.js"></script>
+    
 
 </body>
 

@@ -33,6 +33,7 @@
             <li class="has-sub"> <a href="javascript:;"><i class="fa fa-user fa-fw"></i><span class="title">Employees</span></a>
                 <ul>
                     <li> <a href="<?php echo base_url(); ?>employee/addEmployee"><span class="title">Add Employee</span></a> </li>
+                    <li> <a href="<?php echo base_url(); ?>employee/viewEmployee"><span class="title">View Employee</span></a> </li>
                 </ul>
             </li>
         </ul>
