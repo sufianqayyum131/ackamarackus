@@ -11,27 +11,15 @@ class Test extends CI_Controller {
 	}
 
 	public function index() {
-		$this -> getAllEmployeesFromDatabase();
+		$this -> getEmployeeDetailsFromDatabase();
 	}
 
-	function getAllEmployeesFromDatabase() {
+	function getEmployeeDetailsFromDatabase() {
 
-		$list = $this -> employee_model -> getAllEmployees();
+		$list = $this -> employee_model -> getEmployeesDetails(1014);
 		if (is_array($list) === true && count($list) > 0) {
 			$data = array();
-			foreach ($list as $customers) {
-				$row = array();
-				$row['employeeID'] = $customers -> employeeID;
-				$row['name'] = $customers -> firstName . " " . $customers -> lastName;
-				$row['userName'] = $customers -> userName;
-				$row['email'] = $customers -> email;
-				$row['mobileNum'] = $customers -> mobileNum;
-				$row['department'] = $customers -> department;
-				$row['designation'] = $customers -> designation;
-				$row['employeeType'] = $customers -> employeeType;
-				$row['supervisorID'] = $customers -> supervisorID;
-				$data[] = $row;
-			}
+			$data=$list;
 			implode(',', array_map(function($key) {
 				if (!is_numeric($key)) {
 					return '"' . $key . '"';

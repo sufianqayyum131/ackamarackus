@@ -282,7 +282,7 @@ class Employee_model extends CI_Model {
 		$this -> db -> select('employee_basic_details.*,employee_department_details.*');
 		$this -> db -> from('employee_basic_details');
 		$this -> db -> join('employee_department_details', 'employee_basic_details.employeeID = employee_department_details.employeeID', 'left');
-		//$this->db->where('employee_basic_details.employeeID', 1014);
+		//$this->db->where('employee_basic_details.employeeID', 1006);
 		$query = $this -> db -> get();
 		if ($query) {
 			return $query -> result();
@@ -302,6 +302,147 @@ class Employee_model extends CI_Model {
 
 	}
 
+	function getEmployeesDetails($id) {
+       $employeeBasicDetailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_basic_details');
+
+		$this -> db -> where('employeeID', $id);
+
+		$query = $this -> db -> get();
+		if ($query) {
+		$employeeBasicDetailsArray=$query -> result_array();
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+		
+		$employeeDepartmentalDeailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_department_details');
+
+		$this -> db -> where('employeeID', $id);
+		$query = $this -> db -> get();
+		if ($query) {
+			$employeeDepartmentalDeailsArray=$query -> result_array();
+			//die();
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+		
+		$employeeTrainingDetailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_trainings_history');
+
+		$this -> db -> where('employeeID', $id);
+		$query = $this -> db -> get();
+		if ($query) {
+			$employeeTrainingDetailsArray=$query -> result_array();
+			//die();
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+		
+		$employeeSalaryDetailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_salary_details');
+
+		$this -> db -> where('employeeID', $id);
+		$query = $this -> db -> get();
+		if ($query) {
+			$employeeSalaryDetailsArray=$query -> result_array();
+			//die();
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+		
+		
+		$employeeJobHistoryDetailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_job_history');
+
+		$this -> db -> where('employeeID', $id);
+		$query = $this -> db -> get();
+		if ($query) {
+			$employeeJobHistoryDetailsArray=$query -> result_array();
+			//die();
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+		$employeeEducationDetailsArray=array();
+		$this -> db -> select('*');
+		$this -> db -> from('employee_education_history');
+
+		$this -> db -> where('employeeID', $id);
+		$query = $this -> db -> get();
+		if ($query) {
+			$employeeEducationDetailsArray=$query -> result_array();
 	
+		} else {
+
+			$error = $this -> db -> error();
+
+			// If an error occurred, $error will now have 'code' and 'message' keys...
+			if (isset($error['message'])) {
+				return $error['message'];
+			}
+
+			// No error returned by the DB driver...
+			return null;
+
+		}
+return $result = array_merge($employeeBasicDetailsArray,$employeeDepartmentalDeailsArray,$employeeSalaryDetailsArray,$employeeEducationDetailsArray,$employeeJobHistoryDetailsArray,$employeeTrainingDetailsArray);
+
+
+	}
 
 }
