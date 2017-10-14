@@ -302,8 +302,8 @@ class Employee_model extends CI_Model {
 
 	}
 
-	function getEmployeesDetails($id) {
-       $employeeBasicDetailsArray=array();
+	function employeeBasicDetails($id) {
+		$employeeBasicDetailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_basic_details');
 
@@ -311,7 +311,7 @@ class Employee_model extends CI_Model {
 
 		$query = $this -> db -> get();
 		if ($query) {
-		$employeeBasicDetailsArray=$query -> result_array();
+			return $employeeBasicDetailsArray = $query -> result_array();
 		} else {
 
 			$error = $this -> db -> error();
@@ -325,15 +325,17 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		
-		$employeeDepartmentalDeailsArray=array();
+	}
+
+	function employeeDepartmentalDeails($id) {
+		$employeeDepartmentalDeailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_department_details');
 
 		$this -> db -> where('employeeID', $id);
 		$query = $this -> db -> get();
 		if ($query) {
-			$employeeDepartmentalDeailsArray=$query -> result_array();
+			return $employeeDepartmentalDeailsArray = $query -> result_array();
 			//die();
 		} else {
 
@@ -348,16 +350,22 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		
-		$employeeTrainingDetailsArray=array();
+	}
+
+	function employeeTrainingDetails($id) {
+		$employeeTrainingDetailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_trainings_history');
 
 		$this -> db -> where('employeeID', $id);
 		$query = $this -> db -> get();
 		if ($query) {
-			$employeeTrainingDetailsArray=$query -> result_array();
-			//die();
+			if ($query -> num_rows() == 0) {
+				return array();
+			} else {
+				return $employeeTrainingDetailsArray = $query -> result_array();
+				//die();
+			}
 		} else {
 
 			$error = $this -> db -> error();
@@ -371,15 +379,17 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		
-		$employeeSalaryDetailsArray=array();
+	}
+
+	function employeeSalaryDetails($id) {
+		$employeeSalaryDetailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_salary_details');
 
 		$this -> db -> where('employeeID', $id);
 		$query = $this -> db -> get();
 		if ($query) {
-			$employeeSalaryDetailsArray=$query -> result_array();
+			return $employeeSalaryDetailsArray = $query -> result_array();
 			//die();
 		} else {
 
@@ -394,17 +404,22 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		
-		
-		$employeeJobHistoryDetailsArray=array();
+
+	}
+
+	function employeeJobHistoryDetails($id) {
+		$employeeJobHistoryDetailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_job_history');
 
 		$this -> db -> where('employeeID', $id);
 		$query = $this -> db -> get();
 		if ($query) {
-			$employeeJobHistoryDetailsArray=$query -> result_array();
-			//die();
+			if ($query -> num_rows() == 0) {
+				return array();
+			} else {
+				return $employeeJobHistoryDetailsArray = $query -> result_array();
+			}//die();
 		} else {
 
 			$error = $this -> db -> error();
@@ -418,15 +433,21 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-		$employeeEducationDetailsArray=array();
+	}
+
+	function employeeEducationDetails($id) {
+		$employeeEducationDetailsArray = array();
 		$this -> db -> select('*');
 		$this -> db -> from('employee_education_history');
 
 		$this -> db -> where('employeeID', $id);
 		$query = $this -> db -> get();
 		if ($query) {
-			$employeeEducationDetailsArray=$query -> result_array();
-	
+			if ($query -> num_rows() == 0) {
+				return array();
+			} else {
+				return $employeeEducationDetailsArray = $query -> result_array();
+			}
 		} else {
 
 			$error = $this -> db -> error();
@@ -440,8 +461,7 @@ class Employee_model extends CI_Model {
 			return null;
 
 		}
-return $result = array_merge($employeeBasicDetailsArray,$employeeDepartmentalDeailsArray,$employeeSalaryDetailsArray,$employeeEducationDetailsArray,$employeeJobHistoryDetailsArray,$employeeTrainingDetailsArray);
-
+		//return $result = array_merge($employeeBasicDetailsArray,$employeeDepartmentalDeailsArray,$employeeSalaryDetailsArray,$employeeEducationDetailsArray,$employeeJobHistoryDetailsArray,$employeeTrainingDetailsArray);
 
 	}
 
