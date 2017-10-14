@@ -4,6 +4,5 @@
 	$this->load->view($sidebar);
 	$this->load->view($main_content);
 	$this->load->view($footer);
-	
- echo $employeeBasicDetails[0]['firstName'];
+
 ?>
